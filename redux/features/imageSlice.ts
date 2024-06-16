@@ -38,7 +38,7 @@ export const imageSlice = createAppSlice({
         },
         fulfilled: (state, action) => {
           state.status = "idle"
-          state.images = action.payload
+          state.images = state.images.concat(action.payload)
         },
         rejected: (state) => {
           state.status = "failed"
