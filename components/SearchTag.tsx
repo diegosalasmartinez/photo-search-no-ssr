@@ -1,23 +1,19 @@
-"use client"
-
 // import { setQuery } from "@/store/features/tagSlice"
 // import { useAppDispatch } from "@/store/hooks"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import React, { useEffect } from "react"
+import React from "react"
 import Typography from "./ui/Typography"
 import Button from "./ui/Button"
 import Input from "./ui/Input"
+import { useAppDispatch } from "@/redux/hooks"
+import { setTag } from "@/redux/features/imageSlice"
 
 export default function SearchTag() {
-  const searchParams = useSearchParams()
-  const pathname = usePathname()
-  const { replace } = useRouter()
-//   const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
 
-//   useEffect(() => {
-//     const tag = searchParams.get("tag")
-//     if (tag) dispatch(setQuery(tag))
-//   }, [])
+  //   useEffect(() => {
+  //     const tag = searchParams.get("tag")
+  //     if (tag) dispatch(setQuery(tag))
+  //   }, [])
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -27,10 +23,7 @@ export default function SearchTag() {
     const isInput = tag instanceof HTMLInputElement
     if (!isInput) return
 
-    const params = new URLSearchParams(searchParams)
-    params.set("tag", tag.value)
-    replace(`${pathname}?${params.toString()}`)
-    // dispatch(setQuery(tag.value))
+    dispatch(setTag(tag.value))
 
     tag.value = ""
   }
