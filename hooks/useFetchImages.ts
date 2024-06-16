@@ -38,8 +38,7 @@ export const useFetchImages = () => {
 
   useEffect(() => {
     if (tag != null) {
-      dispatch(clearImages())
-      dispatch(getImages({ tag, page }))
+      dispatch(getImages({ tag, page: 1 }))
     }
   }, [tag, dispatch])
 
