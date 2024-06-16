@@ -1,7 +1,9 @@
 import { UnsplashImage } from "@/lib/interfaces/UnsplashImage"
 
-export const fetchImages = async (page = 1) => {
-  const response = await fetch(`/api/image?page=${page}`, {
+export const fetchImages = async (tag: string | null, page = 1) => {
+  const queryParams = `page=${page}` + (tag ? `&tag=${tag}` : "")
+
+  const response = await fetch(`/api/image?${queryParams}`, {
     method: "GET",
     headers: { "Content-Type": "application/json" }
   })

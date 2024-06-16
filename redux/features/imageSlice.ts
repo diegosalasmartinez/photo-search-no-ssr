@@ -1,4 +1,4 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { PayloadAction } from "@reduxjs/toolkit"
 import { UnsplashImage } from "@/lib/interfaces/UnsplashImage"
 import { createAppSlice } from "../appSlice"
 import { fetchImages } from "../api/imageApi"
@@ -21,6 +21,7 @@ export const imageSlice = createAppSlice({
   name: "image",
   initialState,
   reducers: (create) => ({
+    clearImages: create.reducer(() => initialState),
     setTag: create.reducer((state, action: PayloadAction<string>) => {
       state.tag = action.payload
     }),
@@ -28,8 +29,8 @@ export const imageSlice = createAppSlice({
       state.page += 1
     }),
     getImages: create.asyncThunk(
-      async (page: number) => {
-        const response = await fetchImages(page)
+      async (data: { tag: string | null; page: number }) => {
+        const response = await fetchImages(data.tag, data.page)
         return response
       },
       {
@@ -54,7 +55,8 @@ export const imageSlice = createAppSlice({
   }
 })
 
-export const { setTag, incrementPage, getImages } = imageSlice.actions
+export const { setTag, incrementPage, getImages, clearImages } =
+  imageSlice.actions
 
 export const { selectImages, selectPage, selectStatus, selectTag } =
   imageSlice.selectors
