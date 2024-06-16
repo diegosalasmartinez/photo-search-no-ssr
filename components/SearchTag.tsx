@@ -1,5 +1,3 @@
-// import { setQuery } from "@/store/features/tagSlice"
-// import { useAppDispatch } from "@/store/hooks"
 import React from "react"
 import Typography from "./ui/Typography"
 import Button from "./ui/Button"
@@ -9,11 +7,6 @@ import { setTag } from "@/redux/features/imageSlice"
 
 export default function SearchTag() {
   const dispatch = useAppDispatch()
-
-  //   useEffect(() => {
-  //     const tag = searchParams.get("tag")
-  //     if (tag) dispatch(setQuery(tag))
-  //   }, [])
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()

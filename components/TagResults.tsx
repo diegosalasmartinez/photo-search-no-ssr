@@ -1,19 +1,10 @@
-import { useAppSelector } from "@/redux/hooks"
-import { useImages } from "@/hooks/useImages"
-import {
-  selectImages,
-  selectStatus,
-  selectTag
-} from "@/redux/features/imageSlice"
+import { useFetchImages } from "@/hooks/useFetchImages"
+import ImageList from "./image/ImageList"
 import Typography from "./ui/Typography"
 import Loader from "./ui/Loader"
-import ImageList from "./image/ImageList"
 
 export default function TagResults() {
-  useImages()
-  const tag = useAppSelector(selectTag)
-  const status = useAppSelector(selectStatus)
-  const images = useAppSelector(selectImages)
+  const { tag, status, images } = useFetchImages()
   const title = tag ? "Results" : "Trending Photos Rigth Now"
 
   if (status === "failed") {

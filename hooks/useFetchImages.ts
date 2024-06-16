@@ -1,20 +1,25 @@
 import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import {
+  clearImages,
   getImages,
   incrementPage,
+  selectImages,
   selectPage,
-  selectStatus
+  selectStatus,
+  selectTag
 } from "@/redux/features/imageSlice"
 
-export const useImages = () => {
+export const useFetchImages = () => {
   const dispatch = useAppDispatch()
+  const tag = useAppSelector(selectTag)
+  const images = useAppSelector(selectImages)
   const status = useAppSelector(selectStatus)
   const page = useAppSelector(selectPage)
 
   useEffect(() => {
     if (status === "idle") {
-      dispatch(getImages(1))
+      dispatch(getImages({ tag, page: 1 }))
     }
   }, [])
 
@@ -32,10 +37,17 @@ export const useImages = () => {
   }, [status, dispatch])
 
   useEffect(() => {
+    if (tag != null) {
+      dispatch(clearImages())
+      dispatch(getImages({ tag, page }))
+    }
+  }, [tag, dispatch])
+
+  useEffect(() => {
     if (page > 1) {
-      dispatch(getImages(page))
+      dispatch(getImages({ tag, page }))
     }
   }, [page, dispatch])
 
-  return {}
+  return { tag, status, images }
 }
