@@ -1,9 +1,9 @@
 import React from "react"
+import { useAppDispatch } from "@/redux/hooks"
+import { setTag } from "@/redux/features/imageSlice"
 import Typography from "./ui/Typography"
 import Button from "./ui/Button"
 import Input from "./ui/Input"
-import { useAppDispatch } from "@/redux/hooks"
-import { setTag } from "@/redux/features/imageSlice"
 
 export default function SearchTag() {
   const dispatch = useAppDispatch()
