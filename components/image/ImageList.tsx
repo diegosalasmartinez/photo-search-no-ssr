@@ -4,12 +4,15 @@ import ImageCard from "./ImageCard"
 
 interface ImageListProp {
   images: UnsplashImage[]
+  showResults: boolean
 }
 
-export default function ImageList({ images }: ImageListProp) {
+export default function ImageList({ images, showResults }: ImageListProp) {
   return (
     <div className="mt-2 flex flex-col gap-4">
-      {images.length === 0 && <NoResults message="No images found" />}
+      {showResults && images.length === 0 && (
+        <NoResults message="No images found" />
+      )}
       {images.map((image) => (
         <ImageCard key={image.id} image={image} />
       ))}

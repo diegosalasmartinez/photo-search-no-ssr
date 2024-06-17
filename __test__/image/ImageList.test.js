@@ -15,7 +15,7 @@ describe("ImageList", () => {
   it("render image articles", () => {
     const notFoundMessage = "No images found"
 
-    render(<ImageList images={imagesExample} />)
+    render(<ImageList images={imagesExample} showResults={true} />)
 
     const images = screen.getAllByRole("article")
     const notResult = screen.queryByText(notFoundMessage)
@@ -27,7 +27,7 @@ describe("ImageList", () => {
   it("render no images found", () => {
     const notFoundMessage = "No images found"
 
-    render(<ImageList images={[]} />)
+    render(<ImageList images={[]} showResults={true} />)
 
     const images = screen.queryAllByRole("article")
     const notResult = screen.getByText(notFoundMessage)
