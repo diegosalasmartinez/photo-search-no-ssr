@@ -21,7 +21,7 @@ export default function TagResults() {
   return (
     <section className="mt-4">
       {status === "failed" ? (
-        <ErrorAlert />
+        <ErrorAlert message="Failed to load the images." />
       ) : (
         <>
           <Typography text={title} />
