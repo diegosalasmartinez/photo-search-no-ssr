@@ -1,12 +1,11 @@
 import React from "react"
-import { useAppDispatch } from "@/redux/hooks"
-import { setTag } from "@/redux/features/imageSlice"
+import { useFetchImages } from "@/hooks/useFetchImages"
 import Typography from "./ui/Typography"
 import Button from "./ui/Button"
 import Input from "./ui/Input"
 
 export default function SearchTag() {
-  const dispatch = useAppDispatch()
+  const { setNewTag } = useFetchImages()
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -16,7 +15,7 @@ export default function SearchTag() {
     const isInput = tag instanceof HTMLInputElement
     if (!isInput) return
 
-    dispatch(setTag(tag.value))
+    setNewTag(tag.value)
 
     tag.value = ""
   }

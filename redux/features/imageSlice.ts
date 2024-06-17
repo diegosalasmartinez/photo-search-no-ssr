@@ -22,7 +22,7 @@ export const imageSlice = createAppSlice({
   initialState,
   reducers: (create) => ({
     clearImages: create.reducer(() => initialState),
-    setTag: create.reducer((state, action: PayloadAction<string>) => {
+    setTag: create.reducer((state, action: PayloadAction<string | null>) => {
       state.tag = action.payload
       state.images = []
       state.page = 1

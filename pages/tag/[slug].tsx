@@ -1,18 +1,17 @@
-import TagResults from "@/components/TagResults"
-import { setTag } from "@/redux/features/imageSlice"
-import { useAppDispatch } from "@/redux/hooks"
-import { useRouter } from "next/router"
 import { useEffect } from "react"
+import { useRouter } from "next/router"
+import TagResults from "@/components/TagResults"
+import { useFetchImages } from "@/hooks/useFetchImages"
 
 export default function TagPage() {
-  const dispatch = useAppDispatch()
+  const { setNewTag } = useFetchImages()
   const router = useRouter()
   const { slug } = router.query
 
   useEffect(() => {
     if (slug) {
       const tag = Array.isArray(slug) ? slug.join("/") : slug
-      dispatch(setTag(tag))
+      setNewTag(tag)
     }
   }, [slug])
 
