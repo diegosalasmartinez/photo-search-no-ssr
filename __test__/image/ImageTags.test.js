@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom"
 import { render, screen } from "@testing-library/react"
-import ImageTags from "../components/image/ImageTags"
-import { image } from "./mock_data"
+import ImageTags from "../../components/image/ImageTags"
+import { image as imageExample } from "../mock_data"
 
 jest.mock("next/navigation", () => ({
   useRouter() {
@@ -13,15 +13,15 @@ jest.mock("next/navigation", () => ({
 
 describe("ImageTags", () => {
   it("render tags", () => {
-    render(<ImageTags tags={image.tags} />)
+    render(<ImageTags tags={imageExample.tags} />)
 
     const tags = screen.getAllByRole("button")
 
-    expect(tags).toHaveLength(image.tags.length)
+    expect(tags).toHaveLength(imageExample.tags.length)
   })
 
   it("render 3 tags max", () => {
-    render(<ImageTags tags={image.tags} />)
+    render(<ImageTags tags={imageExample.tags} />)
 
     const tags = screen.getAllByRole("button")
 
