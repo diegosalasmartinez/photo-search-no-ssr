@@ -1,6 +1,6 @@
 export default function Loader() {
   return (
-    <div className="w-[400px] text-sky-600 dark:text-white flex justify-center">
+    <div className="w-full md:w-[400px] text-sky-600 dark:text-white flex justify-center">
       <svg
         className="animate-spin my-4 ml-0 h-5 w-5 text-sky-600 dark:text-white"
         xmlns="http://www.w3.org/2000/svg"

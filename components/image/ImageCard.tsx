@@ -14,6 +14,9 @@ export default function ImageCard({ image }: { image: UnsplashImage }) {
         width={400}
         height={height}
         className="rounded-md"
+        style={{
+          aspectRatio: `400 / ${height}`
+        }}
       />
       <div className="absolute bottom-0 left-0 right-0">
         <div className="bg-black/60 px-2 py-3 w-full flex gap-4 justify-between items-center">
