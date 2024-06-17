@@ -3,8 +3,10 @@ import { useFetchImages } from "@/hooks/useFetchImages"
 import Typography from "./ui/Typography"
 import Button from "./ui/Button"
 import Input from "./ui/Input"
+import { useRouter } from "next/navigation"
 
 export default function SearchTag() {
+  const router = useRouter()
   const { setNewTag } = useFetchImages()
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -15,7 +17,8 @@ export default function SearchTag() {
     const isInput = tag instanceof HTMLInputElement
     if (!isInput) return
 
-    setNewTag(tag.value)
+    // setNewTag(tag.value)
+    router.push(`/tag/${tag.value}`)
 
     tag.value = ""
   }

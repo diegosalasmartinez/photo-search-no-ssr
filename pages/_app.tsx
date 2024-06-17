@@ -5,16 +5,18 @@ import { store } from "@/redux/store"
 import { Inter } from "next/font/google"
 import SearchTag from "@/components/SearchTag"
 import Head from "next/head"
+import Header from "@/components/ui/Header"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
+      <Head>
+        <title>Photo Search</title>
+      </Head>
+      <Header />
       <main className={`flex min-h-dvh flex-col p-4 ${inter.className}`}>
-        <Head>
-          <title>Photo Search</title>
-        </Head>
         <SearchTag />
         <Component {...pageProps} />
       </main>
