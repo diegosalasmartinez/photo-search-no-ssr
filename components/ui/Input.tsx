@@ -3,13 +3,15 @@ interface InputProps {
   type: string
   placeholder: string
   required: boolean
+  minLength?: number
 }
 
 export default function Input({
   name,
   type,
   placeholder,
-  required
+  required,
+  minLength = 3
 }: InputProps) {
   return (
     <input
@@ -18,6 +20,7 @@ export default function Input({
       type={type}
       placeholder={placeholder}
       required={required}
+      minLength={minLength}
     />
   )
 }

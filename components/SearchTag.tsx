@@ -25,7 +25,13 @@ export default function SearchTag() {
     <>
       <Typography text="Search by tag" />
       <form className="flex gap-2 md:gap-4 text-base" onSubmit={handleSubmit}>
-        <Input name="tag" type="text" placeholder="flags" required />
+        <Input
+          name="tag"
+          type="text"
+          placeholder="flags"
+          minLength={3}
+          required
+        />
         <Button text="Search" />
       </form>
     </>
