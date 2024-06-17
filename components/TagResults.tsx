@@ -20,15 +20,16 @@ export default function TagResults() {
 
   return (
     <section className="mt-4">
-      {status === "failed" ? (
+      {status === "failed" && (
         <ErrorAlert message="Failed to load the images." />
-      ) : (
+      )}
+      {status === "idle" && (
         <>
           <Typography text={title} />
           <ImageList images={images} />
-          {status === "loading" && <Loader />}
         </>
       )}
+      {status === "loading" && <Loader />}
     </section>
   )
 }
