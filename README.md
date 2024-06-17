@@ -21,7 +21,6 @@ npm install
 UNSPLASH_API_KEY=YOUR OWN API KEY
 ```
 
-
 4. Run the project:
 
 ```bash
