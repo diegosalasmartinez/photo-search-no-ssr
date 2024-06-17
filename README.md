@@ -27,4 +27,12 @@ UNSPLASH_API_KEY=YOUR OWN API KEY
 npm run dev
 ```
 
-5. Visit the [website](https://photo-search-no-ssr.vercel.app).
+**Optional:**
+
+- Run the tests:
+
+```bash
+npm run test
+```
+
+- Visit the [website](https://photo-search-no-ssr.vercel.app).
