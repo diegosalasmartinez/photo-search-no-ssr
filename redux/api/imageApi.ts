@@ -7,7 +7,12 @@ export const fetchImages = async (tag: string | null, page = 1) => {
     method: "GET",
     headers: { "Content-Type": "application/json" }
   })
-  const result = await response.json()
 
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.error || "Failed to fetch images")
+  }
+
+  const result = await response.json()
   return result.data as UnsplashImage[]
 }

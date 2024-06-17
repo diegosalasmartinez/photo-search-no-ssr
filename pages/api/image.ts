@@ -11,17 +11,21 @@ export default async function handler(
   const tag = req.query.tag as string
   const page = req.query.page as string
 
-  if (tag) {
-    const queryParams = `query=${tag}&page=${page}&per_page=${count}&client_id=${apiKey}`
-    const response = await fetch(`${baseUrl}/search/photos?${queryParams}`)
-    const data = (await response.json()) as UnsplashImageList
+  try {
+    if (tag) {
+      const queryParams = `query=${tag}&page=${page}&per_page=${count}&client_id=${apiKey}`
+      const response = await fetch(`${baseUrl}/search/photos?${queryParams}`)
+      const data = (await response.json()) as UnsplashImageList
 
-    res.status(200).json({ data: data.results })
-  } else {
-    const queryParams = `page=${page}&count=${count}&client_id=${apiKey}`
-    const response = await fetch(`${baseUrl}/photos/random?${queryParams}`)
-    const data = await response.json()
+      res.status(200).json({ data: data.results })
+    } else {
+      const queryParams = `page=${page}&count=${count}&client_id=${apiKey}`
+      const response = await fetch(`${baseUrl}/photos/random?${queryParams}`)
+      const data = await response.json()
 
-    res.status(200).json({ data })
+      res.status(200).json({ data })
+    }
+  } catch (err) {
+    res.status(500).json({ error: "Failed to load data" })
   }
 }
