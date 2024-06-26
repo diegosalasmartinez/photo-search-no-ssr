@@ -13,8 +13,8 @@ export default function ImageList({ images, showResults }: ImageListProp) {
       {showResults && images.length === 0 && (
         <NoResults message="No images found" />
       )}
-      {images.map((image) => (
-        <ImageCard key={image.id} image={image} />
+      {images.map((image, index) => (
+        <ImageCard key={image.id} image={image} index={index} />
       ))}
     </div>
   )

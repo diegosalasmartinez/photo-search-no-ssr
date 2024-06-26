@@ -37,6 +37,16 @@ export const imageSlice = createAppSlice({
         state.imageSelected = action.payload
       }
     ),
+    setNextImageSelected: create.reducer((state) => {
+      if (state.imageSelected === null) return
+      if (state.imageSelected === state.images.length - 1) return
+      state.imageSelected += 1
+    }),
+    setPrevImageSelected: create.reducer((state) => {
+      if (state.imageSelected === null) return
+      if (state.imageSelected === 0) return
+      state.imageSelected -= 1
+    }),
     incrementPage: create.reducer((state) => {
       state.page += 1
     }),
@@ -73,6 +83,8 @@ export const imageSlice = createAppSlice({
 })
 
 export const {
+  setNextImageSelected,
+  setPrevImageSelected,
   setImageSelected,
   incrementPage,
   clearImages,

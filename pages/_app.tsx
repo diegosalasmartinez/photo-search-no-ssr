@@ -1,10 +1,11 @@
 import "@/styles/globals.css"
-import type { AppProps } from "next/app"
-import { Provider } from "react-redux"
 import { store } from "@/redux/store"
-import { Inter } from "next/font/google"
-import SearchTag from "@/components/SearchTag"
+import { Provider } from "react-redux"
+import type { AppProps } from "next/app"
 import Head from "next/head"
+import { Inter } from "next/font/google"
+import ImageModal from "@/components/image/ImageModal"
+import SearchTag from "@/components/SearchTag"
 import Header from "@/components/ui/Header"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -15,10 +16,13 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>Photo Search</title>
       </Head>
-      <Header />
-      <main className={`flex min-h-dvh flex-col p-4 ${inter.className}`}>
-        <SearchTag />
-        <Component {...pageProps} />
+      <main className={`relative ${inter.className}`}>
+        <Header />
+        <ImageModal />
+        <div className={`flex min-h-dvh flex-col p-4 overflow-hidden`}>
+          <SearchTag />
+          <Component {...pageProps} />
+        </div>
       </main>
     </Provider>
   )
