@@ -5,6 +5,7 @@ import { fetchImages } from "../api/imageApi"
 
 export interface ImageState {
   images: UnsplashImage[]
+  imageSelected: number | null
   tag: string | null
   showResults: boolean
   status: "idle" | "loading" | "failed"
@@ -13,6 +14,7 @@ export interface ImageState {
 
 const initialState: ImageState = {
   images: [],
+  imageSelected: null,
   tag: null,
   showResults: false,
   status: "idle",
@@ -30,6 +32,11 @@ export const imageSlice = createAppSlice({
       state.showResults = false
       state.page = 1
     }),
+    setImageSelected: create.reducer(
+      (state, action: PayloadAction<number | null>) => {
+        state.imageSelected = action.payload
+      }
+    ),
     incrementPage: create.reducer((state) => {
       state.page += 1
     }),
@@ -56,23 +63,30 @@ export const imageSlice = createAppSlice({
     )
   }),
   selectors: {
+    selectImageSelected: (state) => state.imageSelected,
     selectShowResults: (state) => state.showResults,
     selectImages: (state) => state.images,
-    selectPage: (state) => state.page,
     selectStatus: (state) => state.status,
+    selectPage: (state) => state.page,
     selectTag: (state) => state.tag
   }
 })
 
-export const { setTag, incrementPage, getImages, clearImages } =
-  imageSlice.actions
+export const {
+  setImageSelected,
+  incrementPage,
+  clearImages,
+  getImages,
+  setTag
+} = imageSlice.actions
 
 export const {
+  selectImageSelected,
+  selectShowResults,
+  selectStatus,
   selectImages,
   selectPage,
-  selectStatus,
-  selectTag,
-  selectShowResults
+  selectTag
 } = imageSlice.selectors
 
 export default imageSlice.reducer
