@@ -10,9 +10,10 @@ export default function ImageModal() {
   const { handleNextImage, handlePreviousImage, closeModal } = useImageModal()
   const selectedImageIndex = useAppSelector(selectImageSelected)
   const images = useAppSelector(selectImages)
-
   if (selectedImageIndex == null) return null
 
+  const canGoBack = selectedImageIndex > 0
+  const canGoForward = selectedImageIndex < images.length - 1
   const currentImage = images[selectedImageIndex]
   if (!currentImage) return null
 
@@ -24,11 +25,19 @@ export default function ImageModal() {
         </button>
       </div>
       <div className="flex justify-center items-center h-dvh">
-        <button className="text-white mr-4" onClick={handlePreviousImage}>
+        <button
+          className={`text-white mr-4 ${canGoBack ? "" : "opacity-0"}`}
+          disabled={!canGoBack}
+          onClick={handlePreviousImage}
+        >
           <ChevronLeft />
         </button>
         <ImageCard image={currentImage} />
-        <button className="text-white ml-4" onClick={handleNextImage}>
+        <button
+          className={`text-white ml-4 ${canGoForward ? "" : "opacity-0"}`}
+          disabled={!canGoForward}
+          onClick={handleNextImage}
+        >
           <ChevronRight />
         </button>
       </div>
