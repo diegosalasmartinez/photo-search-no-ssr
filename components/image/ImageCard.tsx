@@ -1,4 +1,3 @@
-import Image from "next/image"
 import { UnsplashImage } from "@/lib/interfaces/UnsplashImage"
 import ImageData from "./ImageData"
 import ImageTags from "./ImageTags"
@@ -24,7 +23,7 @@ export default function ImageCard({ image, index }: ImageCardProps) {
       className="relative w-fit"
       id={index == null ? "" : `image-card-${index}`}
     >
-      <Image
+      <img
         src={image.urls.small}
         alt={image.alt_description ?? image.description}
         width={400}
