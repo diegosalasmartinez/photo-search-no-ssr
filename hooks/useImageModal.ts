@@ -21,6 +21,11 @@ export const useImageModal = () => {
 
   const closeModal = () => {
     dispatch(setImageSelected(null))
+    const elementId = `image-card-${selectedImageIndex}`
+    const imageCardElement = document.getElementById(elementId)
+    if (imageCardElement) {
+      imageCardElement.scrollIntoView({ behavior: "smooth" })
+    }
   }
 
   const handleNextImage = () => {

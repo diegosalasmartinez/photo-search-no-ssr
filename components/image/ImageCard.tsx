@@ -20,7 +20,10 @@ export default function ImageCard({ image, index }: ImageCardProps) {
   }
 
   return (
-    <article className="relative w-fit">
+    <article
+      className="relative w-fit"
+      id={index == null ? "" : `image-card-${index}`}
+    >
       <Image
         src={image.urls.small}
         alt={image.alt_description ?? image.description}
